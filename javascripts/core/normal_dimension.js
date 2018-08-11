@@ -74,7 +74,7 @@ function getDimensionFinalMultiplier(tier) {
   }
 
   if (player.challenges.includes("postc4")) multiplier = multiplier.pow(1.05);
-  if (player.galacticSacrifice.upgrades.includes(31)) multiplier = multiplier.pow(1.05);
+  if (player.galacticSacrifice.upgrades.includes(31)) multiplier = multiplier.pow(1.1);
 
   if (multiplier.lt(1)) multiplier = new Decimal(1)
 //if (player.dilation.active) {
@@ -575,12 +575,12 @@ function getDimensionProductionPerSecond(tier) {
     if (player.currentChallenge == "challenge2" || player.currentChallenge == "postc1") ret = ret.times(player.chall2Pow)
  // if (player.dilation.active) {
         let tick = new Decimal(player.tickspeed)
-        tick = Decimal.pow(10, Math.pow(Math.max(3,Math.abs(tick.log10())), 0.75))
+        tick = Decimal.pow(10, Math.pow((tick.log10()*-1)+3, 0.75))
         if (player.dilation.upgrades.includes(9)) {
-            tick = Decimal.pow(10, Math.pow(Math.max(3,Math.abs(tick.log10())), 1.05))
+            tick = Decimal.pow(10, Math.pow((tick.log10()*-1)+3, 1.05))
           }
         tick = new Decimal(1).dividedBy(tick)
-        ret = Decimal.floor(player[TIER_NAMES[tier] + 'Amount']).times(getDimensionFinalMultiplier(tier)).times(1000).dividedBy(tick)
+        ret = Decimal.floor(player[TIER_NAMES[tier] + 'Amount']).times(getDimensionFinalMultiplier(tier)).dividedBy(tick)
  // }
     return ret;
 }

@@ -2118,7 +2118,7 @@
 			<table class="table" style="margin: 0 auto">
 				<tr>
 				    <td>
-                <button id="galaxy11" class="infinistorebtn1" onclick="buyGalaxyUpgrade(11)">Sacrifice boosts all even dimensions<br>Cost: 1 GP</button>
+                <button id="galaxy11" class="infinistorebtn1" onclick="buyGalaxyUpgrade(11)">Normal dimensions are 100 times cheaper<br>Cost: 1 GP</button>
             </td>
             <td>
                 <button id="galaxy12" class="infinistorebtn2" onclick="buyGalaxyUpgrade(12)">Multiplier to dimensions based on time since last galactic sacrifice<br>Currently: <span id='galspan12'>x</span>x<br>Cost: 3 GP</button>
@@ -2129,10 +2129,10 @@
 				</tr>
         <tr>
 				    <td>
-                <button id="galaxy21" class="infinistorebtn1" onclick="buyGalaxyUpgrade(21)">Boost cost increase is 5 eighth dimensions<br>Cost: 1 GP</button>
+                <button id="galaxy21" class="infinistorebtn1" onclick="buyGalaxyUpgrade(21)">Boost cost increase is 5 eighth dimensions, and starts scaling 2 boosts later<br>Cost: 1 GP</button>
             </td>
             <td>
-                <button id="galaxy22" class="infinistorebtn2" onclick="buyGalaxyUpgrade(22)">Galaxies after the first cost only 40 more eighth dimensions each<br>Cost: 5 GP</button>
+                <button id="galaxy22" style="font-size:8px" class="infinistorebtn2" onclick="buyGalaxyUpgrade(22)">Galaxy buffs:<br>5x stronger<br>Reduced cost by 20 except for first one<br>Cost scalling reduced to 30<br>Cost: 5 GP</button>
             </td>
             <td>
                 <button id="galaxy23" class="infinistorebtn3" onclick="buyGalaxyUpgrade(23)">Boosts are stronger based on galaxy points<br>Currently: <span id='galspan23'>x</span>x<br>Cost: 100 GP</button>
@@ -2140,14 +2140,21 @@
 				</tr>
         <tr>
 				    <td>
-                <button id="galaxy31" class="infinistorebtn1" onclick="buyGalaxyUpgrade(31)">Dimensions multipliers are increased (x^1.05)<br>Cost: 2 GP</button>
+                <button id="galaxy31" class="infinistorebtn1" onclick="buyGalaxyUpgrade(31)">Dimensions multipliers are increased (x^1.1)<br>Cost: 2 GP</button>
             </td>
             <td>
                 <button id="galaxy32" class="infinistorebtn2" onclick="buyGalaxyUpgrade(32)">Multiplier to galactic sacrifice based on total antimatter<br>Currently: <span id='galspan32'>x</span>x<br>Cost: 8 GP</button>
             </td>
             <td>
-                <button id="galaxy33" class="infinistorebtn3" onclick="buyGalaxyUpgrade(33)">Per-ten multiplier is stronger based on galaxy points<br>Currently: <span id='galspan33'>x</span>x<br>Cost: 1000 GP</button>
+                <button id="galaxy33" class="infinistorebtn3" onclick="buyGalaxyUpgrade(33)">Per-ten multiplier is stronger based on galaxy points<br>Currently: <span id='galspan33'>x</span>x<br>Cost: <span id="g33cost">1000</span> GP</button>
             </td>
+				</tr>
+        <tr>
+				    <td></td>
+            <td>
+                <button id="galaxy4" class="infinistorebtn2" onclick="buyGalaxyUpgrade(4)">Ask Nyan Cat what should go here.<br>Cost: <span id="g4cost">1000</span> GP</button>
+            </td>
+            <td></td>
 				</tr>
 			</table>
         </div>

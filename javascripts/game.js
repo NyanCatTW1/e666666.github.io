@@ -1,4 +1,5 @@
 //test
+var diffMultiplier = 1
 var gameLoopIntervalId;
 var Marathon = 0;
 var Marathon2 = 0;
@@ -452,9 +453,14 @@ function getGalaxyCostScalingStart() {
 }
 
 function getGalaxyRequirement() {
-    let amount = 60 + ((player.galaxies) * 60);
-    if (player.timestudy.studies.includes(42)) amount = 60 + ((player.galaxies) * 52)
-    if (player.galacticSacrifice.upgrades.includes(22)) amount = 60 + ((player.galaxies) * 40)
+    let amount = 20 + ((player.galaxies) * 60);
+    if (player.timestudy.studies.includes(42)) amount = 20 + ((player.galaxies) * 52)
+    if (player.galacticSacrifice.upgrades.includes(22)) {
+      amount = 20 + ((player.galaxies) * 30);
+      if (player.galaxies > 0) {
+        amount -= 20;
+      }
+    }
     if (player.currentChallenge == "challenge4") amount = 99 + ((player.galaxies) * 90)
 
     let galaxyCostScalingStart = getGalaxyCostScalingStart()
@@ -689,6 +695,9 @@ function updateDimensions() {
         document.getElementById("eter5").innerHTML = "Time Dimensions are multiplied by your unspent time theorems"+"<br>Cost: "+shortenCosts(1e40)+" EP"
         document.getElementById("eter6").innerHTML = "Time Dimensions are multiplied by days played"+"<br>Cost: "+shortenCosts(1e50)+" EP"
     }
+
+    document.getElementById("g33cost").innerHTML = shortenCosts(1e3)
+    document.getElementById("g4cost").innerHTML = shortenCosts(1e4)
 
     if (document.getElementById("dilation").style.display == "block") {
         if (player.dilation.active) {
@@ -1781,6 +1790,12 @@ function galaxyReset() {
         player.resets = 4;
     }
 
+    if (player.galacticSacrifice.upgrades.includes(11)) {
+      TIER_NAMES.forEach(function(name)  {
+          if (name !== null) player[name+"Cost"] = player[name+"Cost"].div(100)
+      })
+    }
+
     setInitialDimensionPower();
 
 
@@ -2214,12 +2229,6 @@ function sacrifice(auto = false) {
     if (player.currentEternityChall == "eterc3") return false
     if (player.currentChallenge == "challenge11" && (calcTotalSacrificeBoost().gte(Number.MAX_VALUE) || player.chall11Pow.gte(Number.MAX_VALUE))) return false
     if (!auto) floatText("eightD", "x" + shortenMoney(calcSacrificeBoost()))
-    if (calcSacrificeBoost().gte(Number.MAX_VALUE)) giveAchievement("Yet another infinity reference");
-    if (player.galacticSacrifice.upgrades.includes(11)) {
-      player.secondPow = player.secondPow.times(calcSacrificeBoost())
-      player.fourthPow = player.fourthPow.times(calcSacrificeBoost())
-      player.sixthPow = player.sixthPow.times(calcSacrificeBoost())
-    }
     player.eightPow = player.eightPow.times(calcSacrificeBoost())
     player.sacrificed = player.sacrificed.plus(player.firstAmount);
     if (player.currentChallenge != "challenge11") {
@@ -2252,7 +2261,7 @@ document.getElementById("sacrifice").onclick = function () {
 document.getElementById("gSacrifice").onclick = function () {
     if (getGSAmount().lt(1)) return false
     if (!document.getElementById("confirmation").checked) {
-        if (!confirm("Galactic Sacrifice will do a galaxy reset, and then remove all of your galaxies, in exchange of galaxy points which can be use to buy many powerful upgrades, but it will take a lot of time to recover, are you sure you wanna do this?")) {
+        if (!confirm("Galactic Sacrifice will do a galaxy reset, and then remove all of your galaxies, in exchange of galaxy points which can be use to buy many overpowered upgrades, but it will take a lot of time to recover, are you sure you wanna do this?")) {
             return false;
         }
     }
@@ -4768,6 +4777,7 @@ function gameLoop(diff) {
     diff = diff / 100;
     if (diff < 0) diff = 1;
     if (player.currentEternityChall === "eterc12") diff = diff / 1000;
+    diff = diff * diffMultiplier
     if (player.thisInfinityTime < -10) player.thisInfinityTime = Infinity
     if (player.bestInfinityTime < -10) player.bestInfinityTime = Infinity
     if (diff > player.autoTime && !player.break) player.infinityPoints = player.infinityPoints.plus(player.autoIP.times(diff/player.autoTime))
