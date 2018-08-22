@@ -485,6 +485,7 @@ function getGalaxyCostIncrease() {
   if (player.infinityUpgrades.includes("galCost")) {
     ret -= 5;
   }
+  if (player.infinityUpgrades.includes("postinfi52")) ret -= 3
   return ret;
 }
 
