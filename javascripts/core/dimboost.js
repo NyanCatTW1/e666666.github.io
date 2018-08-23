@@ -14,7 +14,8 @@ function getDimensionBoostPower() {
   if (player.achievements.includes("r101")) ret = ret*1.01
   if (player.timestudy.studies.includes(83)) ret = Decimal.pow(1.0004, player.totalTickGained).times(ret);
   if (player.timestudy.studies.includes(231)) ret = Decimal.pow(player.resets, 0.3).times(ret)
-
+  if (player.infinityUpgrades.includes("postinfi63")) ret = ret.times(2)
+  
   if (player.currentChallenge == "postc9" || player.timestudy.studies.includes(81)) {
     ret = Decimal.pow(ret, 3);
   } else if (player.challenges.includes("postc9")) {
