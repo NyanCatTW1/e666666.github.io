@@ -200,19 +200,16 @@ function buyManyInfinityDimension(tier) {
   if (player.eterc8ids == 0) return false
   player.infinityPoints = player.infinityPoints.minus(dim.cost)
   dim.amount = dim.amount.plus(10);
-  if (!player.infinityUpgrades.includes("postinfi53")){
-      if (ECTimesCompleted("eterc12")) {
-          dim.cost = Decimal.round(dim.cost.times(Math.pow(infCostMults[tier], 1-ECTimesCompleted("eterc12")*0.008)))
-      } else {
-          dim.cost = Decimal.round(dim.cost.times(infCostMults[tier]))
-      }
+  let red = 0
+  if (player.infinityUpgrades.includes("postinfi61")) red += tier
+  if (player.infinityUpgrades.includes("postinfi53")) red += 1
+  let p = Math.pow(10,red)
+  if (ECTimesCompleted("eterc12")){
+      dim.cost = new Decimal (infBaseCost[tier]).times(Math.pow(infCostMults[tier]/p, (dim.baseAmount/10 + 1)*(1-ECTimesCompleted("eterc12")*0.008)))
   } else {
-      if (ECTimesCompleted("eterc12")){
-          dim.cost = new Decimal (infBaseCost[tier]).times(Math.pow(infCostMults[tier]/10, (dim.baseAmount/10 + 1)*(1-ECTimesCompleted("eterc12")*0.008)))
-      } else {
-          dim.cost = new Decimal (infBaseCost[tier]).times(Math.pow(infCostMults[tier]/10, (dim.baseAmount/10 +1)))
-      }
+      dim.cost = new Decimal (infBaseCost[tier]).times(Math.pow(infCostMults[tier]/p, (dim.baseAmount/10 +1)))
   }
+  
   dim.power = dim.power.times(infPowerMults[tier])
   dim.baseAmount += 10
 
