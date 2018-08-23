@@ -243,7 +243,7 @@ function hasInfinityMult(tier) {
         if (player.galacticSacrifice.upgrades.includes(33)) {
           dimMult *= galUpgrade33() / 2;
         }
-
+        if (player.infinityUpgrades.includes("postinfi63")) dimMult *= 2
         if (player.achievements.includes("r58")) dimMult = Math.pow(dimMult, 1.0666);
         return dimMult;
     }
