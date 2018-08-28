@@ -757,7 +757,8 @@ function updateDimensions() {
 	          document.getElementById("postinfi61").innerHTML = "Make g11 better <br> Cost: " + formatValue(player.options.notation,new Decimal("1e450"), 2,0) + " IP"
             document.getElementById("postinfi62").innerHTML = "Make g13 better based on dimboosts <br> Cost: " + formatValue(player.options.notation,new Decimal("1e700"), 2,0) + " IP"
             document.getElementById("postinfi63").innerHTML = "Unlock two new rows of galaxy upgrades <br> Cost: " + formatValue(player.options.notation,new Decimal("1e2000"), 2,0) + " IP"
-            document.getElementById("newgalrow").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
+            document.getElementById("newgalrow1").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
+            document.getElementById("newgalrow2").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
   }
     }
 
@@ -1106,8 +1107,8 @@ function buyInfinityUpgrade(name, cost) {
 document.getElementById("infiMult").onclick = function() {
     if (player.infinityUpgrades.includes("skipResetGalaxy") && player.infinityUpgrades.includes("passiveGen") && player.infinityUpgrades.includes("galaxyBoost") && player.infinityUpgrades.includes("resetBoost") && player.infinityPoints.gte(player.infMultCost)) {
         player.infinityPoints = player.infinityPoints.minus(player.infMultCost)
-        player.infMult = player.infMult.times(galUpgrade53());
-        player.autoIP = player.autoIP.times(galUpgrade53());
+        player.infMult = player.infMult.times(getIPMult());
+        player.autoIP = player.autoIP.times(getIPMult());
         player.infMultCost = player.infMultCost.times(10)
         document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by 2 <br>currently: "+shorten(getIPMult()) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP"
         if (player.autobuyers[11].priority !== undefined && player.autobuyers[11].priority !== null && player.autoCrunchMode == "amount") player.autobuyers[11].priority = player.autobuyers[11].priority.times(2);
@@ -5339,9 +5340,9 @@ function gameLoop(diff) {
     if (player.infMultBuyer) {
         var dif = player.infinityPoints.e - player.infMultCost.e +1
         if (dif > 0) {
-            player.infMult = player.infMult.times(Decimal.pow(galUpgrade53(), dif))
+            player.infMult = player.infMult.times(Decimal.pow(getIPMult(), dif))
             player.infMultCost = player.infMultCost.times(Decimal.pow(10, dif))
-            document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by " + galUpgrade53().toFixed(3) + "<br>currently: "+shorten(getIPMult()) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP"
+            document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by " + getIPMult().toFixed(3) + "<br>currently: "+shorten(getIPMult()) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP"
             player.infinityPoints = player.infinityPoints.minus(player.infMultCost.dividedBy(10))
             if (player.autobuyers[11].priority !== undefined && player.autobuyers[11].priority !== null && player.autoCrunchMode == "amount") player.autobuyers[11].priority = player.autobuyers[11].priority.times(Decimal.pow(2, dif));
             if (player.autoCrunchMode == "amount") document.getElementById("priority12").value = player.autobuyers[11].priority

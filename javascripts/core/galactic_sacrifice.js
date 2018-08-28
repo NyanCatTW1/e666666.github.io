@@ -122,14 +122,13 @@ let galUpgrade51 = function () {
   return player.galacticSacrifice.galaxyPoints.pow(.00001)
 }
 
-let cost1 = new Decimal ("1e10000")
-let galUpgrade53 = function () {
+let getIPMult = function () {
+  let cost1 = new Decimal ("1e10000")
   let x = cost1.log10()
-  return 2+Math.pow(1.1,-10*x/player.galacticSacrifice.galaxyPoints.log10())
+  ret = 2
+  if (player.galacticSacrifice.upgrades.includes(53)) ret += Math.pow(1.1,-10*x/player.galacticSacrifice.galaxyPoints.log10())
+  return ret
 }
-
-
-
 
 function galacticSacrifice() {
     let gsAmount = getGSAmount();
@@ -184,12 +183,12 @@ let galUpgradeCosts = {
   31: 2,
   32: 8,
   33: 1000,
-  41: new Decimal('1e400'),
-  42: new Decimal('1e500'),
-  43: new Decimal('1e600'),
-  51: new Decimal('1e700'),
-  52: new Decimal('1e800'),
-  53: new Decimal('1e900')
+  41: new Decimal('1e2000'),
+  42: new Decimal(1/0),
+  43: new Decimal(1/0),
+  51: new Decimal(1/0),
+  52: new Decimal(1/0),
+  53: new Decimal(1/0)
 }
 
 function canBuyGalUpgrade(num) {
