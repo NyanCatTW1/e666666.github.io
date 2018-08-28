@@ -6,7 +6,8 @@ function getGSAmount() {
   if (!player.galacticSacrifice.upgrades.includes(52)){
     if (y>100) y = Math.pow(316.22*y,1/3)
     else if (y>10) y = Math.pow(10*y , .5)
-  }
+  } else if(y > 100) y = Math.pow(100*y , .5)
+  
   let z = 1
   if (player.challenges.length >17) {
     z = 0.06*player.challenges.length
