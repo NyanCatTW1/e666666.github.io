@@ -1338,6 +1338,10 @@ document.getElementById("postinfi62").onclick = function() {
     buyInfinityUpgrade("postinfi62",new Decimal("1e700"));
 }
 
+document.getElementById("postinfi63").onclick = function() {
+    buyInfinityUpgrade("postinfi63",new Decimal("1e2000"));
+}
+
 document.getElementById("offlineProd").onclick = function() {
     if (player.infinityPoints.gte(player.offlineProdCost) && player.offlineProd < 50) {
         player.infinityPoints = player.infinityPoints.minus(player.offlineProdCost)
@@ -5535,6 +5539,9 @@ function gameLoop(diff) {
 
 	if (player.infinityPoints.gte(new Decimal("1e700"))) document.getElementById("postinfi62").className = "infinistorebtn1"
         else document.getElementById("postinfi62").className = "infinistorebtnlocked"
+	    
+	if (player.infinityPoints.gte(new Decimal("1e2000"))) document.getElementById("postinfi63").className = "infinistorebtn1"
+        else document.getElementById("postinfi63").className = "infinistorebtnlocked"
 
         if (player.infinityPoints.gte(player.offlineProdCost)) document.getElementById("offlineProd").className = "infinimultbtn"
         else document.getElementById("offlineProd").className = "infinistorebtnlocked"
@@ -5669,6 +5676,7 @@ function gameLoop(diff) {
     if (player.infinityUpgrades.includes("postinfi60")) document.getElementById("postinfi60").className = "infinistorebtnbought"
     if (player.infinityUpgrades.includes("postinfi61")) document.getElementById("postinfi61").className = "infinistorebtnbought"
     if (player.infinityUpgrades.includes("postinfi62")) document.getElementById("postinfi62").className = "infinistorebtnbought"
+    if (player.infinityUpgrades.includes("postinfi63")) document.getElementById("postinfi63").className = "infinistorebtnbought"
 
     if (player.dimensionMultDecrease <= 3) document.getElementById("postinfi42").className = "infinistorebtnbought"
     if (player.offlineProd == 50) document.getElementById("offlineProd").className = "infinistorebtnbought"
