@@ -756,6 +756,7 @@ function updateDimensions() {
             document.getElementById("postinfir6").style.display = (player.infinityDimension4.amount.gt(0)||player.eternities > 0)?"":"none"
 	    document.getElementById("postinfi61").innerHTML = "Make g11 better <br> Cost: " + formatValue(player.options.notation,new Decimal("1e450"), 2,0) + " IP"
             document.getElementById("postinfi62").innerHTML = "Make g13 better based on dimboosts <br> Cost: " + formatValue(player.options.notation,new Decimal("1e700"), 2,0) + " IP"
+	    document.getElementById("newgalrow").style.display = (player.infinityUpgrade.includes("postinfi63"))?"":"none"
         }
     }
 
