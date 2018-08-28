@@ -754,8 +754,9 @@ function updateDimensions() {
             if (player.eternities > 0)   document.getElementById("postinfi60").innerHTML = "You gain more IP based on galaxies<br>(3.5^(galaxies-95)) <br>Currently: "+formatValue(player.options.notation,getB60Mult(),2,0)+"x <br>Cost: "+formatValue(player.options.notation,1e50,0,0)+" IP"
 	          else document.getElementById("postinfi60").innerHTML = "You gain more IP based on galaxies<br>(3^(galaxies-95)) <br>Currently: "+formatValue(player.options.notation,getB60Mult(),2,0)+"x <br>Cost: "+formatValue(player.options.notation,1e50,0,0)+" IP"
             document.getElementById("postinfir6").style.display = (player.infinityDimension4.amount.gt(0)||player.eternities > 0)?"":"none"
-	    document.getElementById("postinfi61").innerHTML = "Make g11 better <br> Cost: " + formatValue(player.options.notation,new Decimal("1e450"), 2,0) + " IP"
+	          document.getElementById("postinfi61").innerHTML = "Make g11 better <br> Cost: " + formatValue(player.options.notation,new Decimal("1e450"), 2,0) + " IP"
             document.getElementById("postinfi62").innerHTML = "Make g13 better based on dimboosts <br> Cost: " + formatValue(player.options.notation,new Decimal("1e700"), 2,0) + " IP"
+            document.getElementById("postinfi63").innerHTML = "Unlock two new rows of galaxy upgrades <br> Cost: " + formatValue(player.options.notation,new Decimal("1e2000"), 2,0) + " IP"
         }
     }
 
@@ -4888,7 +4889,7 @@ setInterval(function() {
     document.getElementById("kongalldim").textContent = "Double ALL the dimension multipliers (Normal, Infinity, Time) (multiplicative until 32x). Forever. Currently: x"+kongAllDimMult+", next: x"+((kongAllDimMult < 32) ? kongAllDimMult * 2 : kongAllDimMult + 32)
     document.getElementById("eternityPoints2").innerHTML = "You have <span class=\"EPAmount2\">"+shortenDimensions(player.eternityPoints)+"</span> Eternity point"+((player.eternityPoints.eq(1)) ? "." : "s.")
 
-    document.getElementById("eternitybtn").style.display = (player.infinityPoints.gte(player.eternityChallGoal) && (player.infDimensionsUnlocked[7] || player.eternities > 24)) ? "inline-block" : "none"
+    document.getElementById("eternitybtn").style.display = (player.infinityPoints.gte(player.eternityChallGoal) && player.infDimensionsUnlocked[7]) ? "inline-block" : "none"
 
 
     if (player.eternities !== 0)document.getElementById("eternitystorebtn").style.display = "inline-block"
@@ -5539,7 +5540,7 @@ function gameLoop(diff) {
 
 	if (player.infinityPoints.gte(new Decimal("1e700"))) document.getElementById("postinfi62").className = "infinistorebtn1"
         else document.getElementById("postinfi62").className = "infinistorebtnlocked"
-	    
+
 	if (player.infinityPoints.gte(new Decimal("1e2000"))) document.getElementById("postinfi63").className = "infinistorebtn1"
         else document.getElementById("postinfi63").className = "infinistorebtnlocked"
 

@@ -115,7 +115,7 @@ let galUpgrade33 = function () {
 }
 
 let galUpgrade43 = function () {
-  return player.galacticSacrifice.galaxyPoints.log().pow(2)
+  return Math.pow(player.galacticSacrifice.galaxyPoints.log(), 2)
 }
 
 let galUpgrade51 = function () {
@@ -183,7 +183,13 @@ let galUpgradeCosts = {
   23: 100,
   31: 2,
   32: 8,
-  33: 1000
+  33: 1000,
+  41: new Decimal('1e400'),
+  42: new Decimal('1e500'),
+  43: new Decimal('1e600'),
+  51: new Decimal('1e700'),
+  52: new Decimal('1e800'),
+  53: new Decimal('1e900')
 }
 
 function canBuyGalUpgrade(num) {
@@ -193,7 +199,7 @@ function canBuyGalUpgrade(num) {
 }
 
 function galacticUpgradeButtonTypeDisplay () {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 5; i++) {
     for (let j = 1; j <= 3; j++) {
       let e = document.getElementById('galaxy' + i + j);
       let num = +(i + '' + j);
