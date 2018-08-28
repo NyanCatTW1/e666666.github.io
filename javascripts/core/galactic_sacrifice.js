@@ -114,6 +114,17 @@ let galUpgrade33 = function () {
   return Math.max(2 + player.galacticSacrifice.galaxyPoints.log(10)*0.5, 2)
 }
 
+let galUpgrade43 = function () {
+  return player.galacticSacrifice.galaxyPoints.log().pow(2)
+}
+
+let galUpgrade51 = function () {
+  return player.galacticSacrifice.galaxyPoints.pow(.00001)
+}
+
+
+
+
 function galacticSacrifice() {
     let gsAmount = getGSAmount();
     if (gsAmount.lt(1)) return false
