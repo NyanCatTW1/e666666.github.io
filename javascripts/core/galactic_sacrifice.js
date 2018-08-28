@@ -122,14 +122,6 @@ let galUpgrade51 = function () {
   return player.galacticSacrifice.galaxyPoints.pow(.00001)
 }
 
-let getIPMult = function () {
-  let cost1 = new Decimal ("1e10000")
-  let x = cost1.log10()
-  ret = 2
-  if (player.galacticSacrifice.upgrades.includes(53)) ret += Math.pow(1.1,-10*x/player.galacticSacrifice.galaxyPoints.log10())
-  return ret
-}
-
 function galacticSacrifice() {
     let gsAmount = getGSAmount();
     if (gsAmount.lt(1)) return false

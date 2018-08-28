@@ -1109,8 +1109,8 @@ function buyInfinityUpgrade(name, cost) {
 document.getElementById("infiMult").onclick = function() {
     if (player.infinityUpgrades.includes("skipResetGalaxy") && player.infinityUpgrades.includes("passiveGen") && player.infinityUpgrades.includes("galaxyBoost") && player.infinityUpgrades.includes("resetBoost") && player.infinityPoints.gte(player.infMultCost)) {
         player.infinityPoints = player.infinityPoints.minus(player.infMultCost)
-        player.infMult = player.infMult.times(getIPMult());
-        player.autoIP = player.autoIP.times(getIPMult());
+        player.infMult = player.infMult.times(getIPMultMultiplier());
+        player.autoIP = player.autoIP.times(getIPMultMultiplier());
         player.infMultCost = player.infMultCost.times(10)
         document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by 2 <br>currently: "+shorten(getIPMult()) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP"
         if (player.autobuyers[11].priority !== undefined && player.autobuyers[11].priority !== null && player.autoCrunchMode == "amount") player.autobuyers[11].priority = player.autobuyers[11].priority.times(2);
@@ -1780,6 +1780,14 @@ function getIPMult () {
       	else mult = mult.times(Decimal.pow(galaxies,0.3).plus(7))
     }
     return mult;
+}
+
+let getIPMultMultiplier = function () {
+  let cost1 = new Decimal ("1e10000")
+  let x = cost1.log10()
+  ret = 2
+  if (player.galacticSacrifice.upgrades.includes(53)) ret += Math.pow(1.1,-10*x/player.galacticSacrifice.galaxyPoints.log10())
+  return ret
 }
 
 function setInitialDimensionPower () {
@@ -5342,7 +5350,7 @@ function gameLoop(diff) {
     if (player.infMultBuyer) {
         var dif = player.infinityPoints.e - player.infMultCost.e +1
         if (dif > 0) {
-            player.infMult = player.infMult.times(Decimal.pow(getIPMult(), dif))
+            player.infMult = player.infMult.times(Decimal.pow(getIPMultIncrease(), dif))
             player.infMultCost = player.infMultCost.times(Decimal.pow(10, dif))
             document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by " + getIPMult().toFixed(3) + "<br>currently: "+shorten(getIPMult()) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP"
             player.infinityPoints = player.infinityPoints.minus(player.infMultCost.dividedBy(10))
