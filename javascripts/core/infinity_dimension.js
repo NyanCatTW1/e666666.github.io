@@ -200,7 +200,7 @@ var infBaseCost = [null, 1e8, 1e9, 1e10, 1e20, 1e140, 1e200, 1e250,1e280]
 function getInfBuy10Mult (tier){
   if (!player.galacticSacrifice.upgrades.includes(41)) return infPowerMults[tier]
   let mult = player.galacticSacrifice.galaxyPoints.log10()
-  return infPowerMults[tier]*mult
+  return infPowerMults[tier]*Math.pow(mult,4)
 }
 
 function getIDdiv(){
