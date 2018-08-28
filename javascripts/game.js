@@ -5350,7 +5350,7 @@ function gameLoop(diff) {
     if (player.infMultBuyer) {
         var dif = player.infinityPoints.e - player.infMultCost.e +1
         if (dif > 0) {
-            player.infMult = player.infMult.times(Decimal.pow(getIPMultIncrease(), dif))
+            player.infMult = player.infMult.times(Decimal.pow(getIPMultMultiplier(), dif))
             player.infMultCost = player.infMultCost.times(Decimal.pow(10, dif))
             document.getElementById("infiMult").innerHTML = "Multiply infinity points from all sources by " + getIPMult().toFixed(3) + "<br>currently: "+shorten(getIPMult()) +"x<br>Cost: "+shortenCosts(player.infMultCost)+" IP"
             player.infinityPoints = player.infinityPoints.minus(player.infMultCost.dividedBy(10))
