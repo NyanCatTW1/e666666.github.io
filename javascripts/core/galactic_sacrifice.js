@@ -115,11 +115,11 @@ let galUpgrade33 = function () {
 }
 
 let galUpgrade43 = function () {
-  return Math.pow(player.galacticSacrifice.galaxyPoints.ln(), 2)
+  return Math.pow(player.galacticSacrifice.galaxyPoints.ln(), 10)
 }
 
 let galUpgrade51 = function () {
-  return player.galacticSacrifice.galaxyPoints.pow(.00001)
+  return player.galacticSacrifice.galaxyPoints.pow(.0001)
 }
 
 let cost1 = new Decimal ("1e10000")
@@ -184,9 +184,9 @@ let galUpgradeCosts = {
   31: 2,
   32: 8,
   33: 1000,
-  41: new Decimal('1e2000'),
-  42: new Decimal('1e3000'),
-  43: new Decimal('1e4000'),
+  41: new Decimal('1e1800'),
+  42: new Decimal('1e2300'),
+  43: new Decimal('1e2500'),
   51: new Decimal('1e5000'),
   52: new Decimal('1e6000'),
   53: new Decimal('1e7000')
