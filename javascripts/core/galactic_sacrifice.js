@@ -177,7 +177,7 @@ let galUpgradeCosts = {
   31: 2,
   32: 8,
   33: 1000,
-  41: new Decimal('1e2000'),
+  41: new Decimal('1e1800'),
   42: new Decimal(1/0),
   43: new Decimal(1/0),
   51: new Decimal(1/0),
