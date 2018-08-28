@@ -122,6 +122,12 @@ let galUpgrade51 = function () {
   return player.galacticSacrifice.galaxyPoints.pow(.00001)
 }
 
+let cost1 = new Decimal ("1e10000")
+let galUpgrade53 = function () {
+  let x = cost1.log10()
+  return 2+Math.pow(1.1,-10*x/player.galacticSacrifice.galaxyPoints.log10())
+}
+
 
 
 
