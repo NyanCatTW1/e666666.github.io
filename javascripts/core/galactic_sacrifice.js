@@ -3,9 +3,10 @@ function getGSAmount() {
   let y = 1.5 + Math.max(0, 0.05*(galaxies - 10)) + 0.005 * Math.pow(Math.max(0, galaxies-30) , 2) + 0.0005 * Math.pow(Math.max(0, galaxies-50) , 3);
   if (!player.challenges.includes("postc1")) y = 1.5
   else y *= .08*player.challenges.length
-  if (y>100) y = Math.pow(316.22*y,1/3)
-  else if (y>10) y = Math.pow(10*y , .5)
-
+  if (!player.galacticSacrifice.upgrades.includes(52)){
+    if (y>100) y = Math.pow(316.22*y,1/3)
+    else if (y>10) y = Math.pow(10*y , .5)
+  }
   let z = 1
   if (player.challenges.length >17) {
     z = 0.06*player.challenges.length
