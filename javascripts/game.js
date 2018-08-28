@@ -757,7 +757,8 @@ function updateDimensions() {
 	          document.getElementById("postinfi61").innerHTML = "Make g11 better <br> Cost: " + formatValue(player.options.notation,new Decimal("1e450"), 2,0) + " IP"
             document.getElementById("postinfi62").innerHTML = "Make g13 better based on dimboosts <br> Cost: " + formatValue(player.options.notation,new Decimal("1e700"), 2,0) + " IP"
             document.getElementById("postinfi63").innerHTML = "Unlock two new rows of galaxy upgrades <br> Cost: " + formatValue(player.options.notation,new Decimal("1e2000"), 2,0) + " IP"
-        }
+            document.getElementById("newgalrow").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
+  }
     }
 
     galacticUpgradeSpanDisplay();
