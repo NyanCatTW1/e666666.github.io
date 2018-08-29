@@ -206,8 +206,8 @@ function getInfBuy10Mult (tier){
 function getInfBuy10CostDiv (){
   let div = 1;
   if (player.infinityUpgrades.includes("postinfi53")) div = 50
-  if (player.galacticSacrifice.upgrades.includes(42)) div *= 1 + Math.log(player.infinityPower.plus(1).log10()+1)
-  return div
+  if (player.galacticSacrifice.upgrades.includes(42)) div *= 2 + 2 * Math.log(player.infinityPower.plus(1).log10()+1)
+  return Math.min(999,div)
   
 }
 
