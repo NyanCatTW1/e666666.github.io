@@ -208,7 +208,7 @@ function getInfBuy10CostDiv (tier){
   if (player.infinityUpgrades.includes("postinfi53")) div = 50
   if (player.galacticSacrifice.upgrades.includes(42)) div *= 1 + 20 * Math.log(player.eternityPoints.plus(1).log10()+1)
   let MAX = Math.pow(infCostMults[tier],.99);
-  return Math.max(div,MAX)
+  return Math.min(div,MAX)
   
 }
 
