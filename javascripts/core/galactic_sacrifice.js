@@ -220,6 +220,12 @@ function buyGalaxyUpgrade (i) {
           if (name !== null) player[name+"Cost"] = player[name+"Cost"].div(100)
       })
     }
+    if (i == 41) {
+      for (n=1;n<9;n++) {
+        var dim = player["infinityDimension"+n]
+        dim.power = Decimal.pow(getInfBuy10Mult(n), dim.baseAmount/10)
+      }
+    }
     return true;
   }
 }
