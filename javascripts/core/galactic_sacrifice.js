@@ -147,6 +147,7 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById('galspan32').innerHTML = formatValue(player.options.notation, galUpgrade32(), 2, 2);
   document.getElementById('galspan33').innerHTML = (galUpgrade33()/2).toFixed(2);
   document.getElementById("galcost33").innerHTML = shortenCosts(1e3);
+  document.getElementById("galspan51").innerHTML = formatValue(player.options.notation, galUpgrade51(), 2, 2);
 }
 
 function newGalacticDataOnInfinity () {
