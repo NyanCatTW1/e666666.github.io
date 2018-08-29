@@ -121,7 +121,7 @@ let galUpgrade43 = function () {
 }
 
 let galUpgrade51 = function () {
-  return player.galacticSacrifice.galaxyPoints.pow(.00001)
+  return player.galacticSacrifice.galaxyPoints.pow(.0001)
 }
 
 function galacticSacrifice() {
@@ -148,6 +148,8 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById('galspan33').innerHTML = (galUpgrade33()/2).toFixed(2);
   document.getElementById("galcost33").innerHTML = shortenCosts(1e3);
   document.getElementById("galspan51").innerHTML = formatValue(player.options.notation, galUpgrade51(), 2, 2);
+  document.getElementById("galspan43").innerHTML = formatValue(player.options.notation, galUpgrade43(), 2,2);
+  document.getElementById("galspan51").innerHTML = formatValue(player.options.notation, galUpgrade51(), 2,2);
 }
 
 function newGalacticDataOnInfinity () {
@@ -178,7 +180,7 @@ let galUpgradeCosts = {
   31: 2,
   32: 8,
   33: 1000,
-  41: new Decimal('1e1800'),
+  41: new Decimal('1e1675'),
   42: new Decimal(1/0),
   43: new Decimal(1/0),
   51: new Decimal(1/0),
