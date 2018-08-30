@@ -154,8 +154,8 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById("galcost42").innerHTML = shortenCosts(new Decimal("1e2250"));
   document.getElementById("galcost43").innerHTML = shortenCosts(new Decimal("1e3600"));
   document.getElementById("galcost51").innerHTML = shortenCosts(new Decimal("1e5500"));
-  document.getElementById("galcost52").innerHTML = shortenCosts(new Decimal("1e7000"));
-  document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal("1e18000"));
+  document.getElementById("galcost52").innerHTML = shortenCosts(new Decimal("1e8000"));
+  document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal("1e22000"));
   
 }
 
@@ -191,8 +191,8 @@ let galUpgradeCosts = {
   42: new Decimal("1e2250"),
   43: new Decimal("1e3600"),
   51: new Decimal("1e5500"),
-  52: new Decimal("1e7000"),
-  53: new Decimal("1e18000")
+  52: new Decimal("1e8000"),
+  53: new Decimal("1e22000")
 }
 
 function canBuyGalUpgrade(num) {
