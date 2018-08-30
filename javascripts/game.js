@@ -1783,10 +1783,10 @@ function getIPMult () {
 }
 
 let getIPMultMultiplier = function () {
-  let cost1 = new Decimal ("1e10000")
-  let x = cost1.log10()
-  ret = 2
-  if (player.galacticSacrifice.upgrades.includes(53)) ret += Math.pow(1.1,-10*x/player.galacticSacrifice.galaxyPoints.log10())
+  // x is log10 of g53 cost it starts around 2.1
+  let x = 15000;
+  let ret = 2;
+  if (player.galacticSacrifice.upgrades.includes(53)) ret += Math.pow(1.25,-10*x/player.galacticSacrifice.galaxyPoints.log10())
   return ret
 }
 
