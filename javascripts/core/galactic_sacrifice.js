@@ -70,6 +70,7 @@ let galUpgrade11 = function () {
   if (player.infinityUpgrades.includes("postinfi61")){
     x += 1e7
     z -= .1
+    if (player.galacticSacrifice.upgrades.length>9) x += player.galacticSacrifice.upgrades.length*1e8
   }
   if (player.eternities > 0) z -= 0.5
   if (x <= 0) {
