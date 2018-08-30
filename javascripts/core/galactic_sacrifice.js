@@ -151,7 +151,7 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById("galspan51").innerHTML = formatValue(player.options.notation, galUpgrade51(), 2,2);
   document.getElementById("galcost41").innerHTML = shortenCosts(new Decimal("1e1650"));
   document.getElementById("galcost42").innerHTML = shortenCosts(new Decimal("1e2250"));
-  document.getElementById("galcost43").innerHTML = shortenCosts(new Decimal(1/0));
+  document.getElementById("galcost43").innerHTML = shortenCosts(new Decimal("1e3600"));
   document.getElementById("galcost51").innerHTML = shortenCosts(new Decimal(1/0));
   document.getElementById("galcost52").innerHTML = shortenCosts(new Decimal(1/0));
   document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal(1/0));
@@ -188,7 +188,7 @@ let galUpgradeCosts = {
   33: 1000,
   41: new Decimal('1e1650'),
   42: new Decimal("1e2250"),
-  43: new Decimal(1/0),
+  43: new Decimal("1e3600"),
   51: new Decimal(1/0),
   52: new Decimal(1/0),
   53: new Decimal(1/0)
