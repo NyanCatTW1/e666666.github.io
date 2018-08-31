@@ -5403,7 +5403,9 @@ function gameLoop(diff) {
     if (player.firstAmount.lt(1)) document.getElementById("first").className = 'storebtn';
 
     for (var tier = 1; tier < 9; tier++) {
-        if (player.infinityPoints.gte(player["infinityDimension"+tier].cost)) document.getElementById("infMax"+tier).className = "storebtn"
+	var dim = player["infinityDimension"+tier]
+	dim.cost = new Decimal(infBaseCost[tier]).times(Decimal.pow(infCostMults[tier]/getInfBuy10CostDiv(tier), (dim.baseAmount/10 + 1)*(ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1)))
+        if (player.infinityPoints.gte(dim.cost)) document.getElementById("infMax"+tier).className = "storebtn"
         else document.getElementById("infMax"+tier).className = "unavailablebtn"
     }
 
