@@ -4986,7 +4986,7 @@ setInterval(function() {
         while (upgradeReplicantiGalaxy()) continue
     }
 
-    document.getElementById("eterc1goal").textContent = "Goal: "+shortenCosts(new Decimal("1e1800").times(new Decimal("1e200").pow(ECTimesCompleted("eterc1"))).max(new Decimal("1e1800"))) + " IP"
+    document.getElementById("eterc1goal").textContent = "Goal: "+shortenCosts(new Decimal("1e3600").times(new Decimal("1e400").pow(ECTimesCompleted("eterc1"))).max(new Decimal("1e3600"))) + " IP"
     document.getElementById("eterc1completed").textContent = "Completed "+ECTimesCompleted("eterc1")+" times."
 
     document.getElementById("eterc2goal").textContent = "Goal: "+shortenCosts(new Decimal("1e975").times(new Decimal("1e175").pow(ECTimesCompleted("eterc2"))).max(new Decimal("1e975"))) + " IP"

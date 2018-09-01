@@ -27,7 +27,6 @@ function getTimeDimensionPower(tier) {
   ret = ret.times(ec10bonus)
   if (player.achievements.includes("r128")) ret = ret.times(Math.max(player.timestudy.studies.length, 1))
   if (player.galacticSacrifice.upgrades.includes(43)) ret = ret.times(galUpgrade43())
-  
   if (player.replicanti.unl && player.replicanti.amount.gt(1) && player.dilation.upgrades.includes(5)) {
     var replmult = Decimal.pow(Decimal.log2(player.replicanti.amount), 2)
 

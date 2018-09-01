@@ -93,7 +93,13 @@ let galUpgrade12 = function () {
 let galUpgrade13 = function () {
   let base = player.galacticSacrifice.galaxyPoints.div(5).plus(1).pow(3);
   let exp = 1;
-  if (player.infinityUpgrades.includes("postinfi62")) exp = Math.pow(Math.log(player.resets+3),2)
+  if (player.infinityUpgrades.includes("postinfi62")) {
+    if (player.currentEternityChall === "") {
+      exp = Math.pow(Math.log(player.resets+3),2);
+    } else {
+      exp = Math.log(player.resets+3);
+    }
+  }
   return base.pow(exp);
 }
 
@@ -156,7 +162,7 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById("galcost51").innerHTML = shortenCosts(new Decimal("1e5500"));
   document.getElementById("galcost52").innerHTML = shortenCosts(new Decimal("1e8000"));
   document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal("1e22000"));
-  
+
 }
 
 function newGalacticDataOnInfinity () {
