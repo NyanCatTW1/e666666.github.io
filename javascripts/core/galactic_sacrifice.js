@@ -158,11 +158,11 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById("galspan43").innerHTML = formatValue(player.options.notation, galUpgrade43(), 2,2);
   document.getElementById("galspan51").innerHTML = formatValue(player.options.notation, galUpgrade51(), 2,2);
   document.getElementById("galcost41").innerHTML = shortenCosts(new Decimal("1e1650"));
-  document.getElementById("galcost42").innerHTML = shortenCosts(new Decimal("1e2250"));
-  document.getElementById("galcost43").innerHTML = shortenCosts(new Decimal("1e3600"));
+  document.getElementById("galcost42").innerHTML = shortenCosts(new Decimal("1e2300"));
+  document.getElementById("galcost43").innerHTML = shortenCosts(new Decimal("1e3700"));
   document.getElementById("galcost51").innerHTML = shortenCosts(new Decimal("1e5500"));
   document.getElementById("galcost52").innerHTML = shortenCosts(new Decimal("1e8000"));
-  document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal("1e22000"));
+  document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal("1e25000"));
 
 }
 
@@ -194,12 +194,12 @@ let galUpgradeCosts = {
   31: 2,
   32: 8,
   33: 1000,
-  41: new Decimal('1e1650'),
-  42: new Decimal("1e2250"),
+  41: new Decimal('1e1700'),
+  42: new Decimal("1e2300"),
   43: new Decimal("1e3600"),
   51: new Decimal("1e5500"),
   52: new Decimal("1e8000"),
-  53: new Decimal("1e22000")
+  53: new Decimal("1e25000")
 }
 
 function canBuyGalUpgrade(num) {
