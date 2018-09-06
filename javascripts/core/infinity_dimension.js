@@ -49,6 +49,7 @@ function updateInfinityDimensions() {
 
 function DimensionProduction(tier) {
   if (player.currentEternityChall == "eterc10") return new Decimal(0)
+  if (player.currentEternityChall == "eterc2")  return new Decimal(0)
   var dim = player["infinityDimension"+tier]
   var ret = dim.amount
   if (player.currentEternityChall == "eterc11") return ret
@@ -104,7 +105,7 @@ function DimensionPower(tier) {
 
   if (ECTimesCompleted("eterc9") !== 0) mult = mult.times(player.timeShards.pow(ECTimesCompleted("eterc9")*0.1).plus(1).min(new Decimal("1e400")))
 
-  if (mult.lt(0)) mult = new Decimal(0)
+  if (mult.lt(1)) mult = new Decimal(1)
 
 //if (player.dilation.active) {
     mult = Decimal.pow(10, Math.pow(mult.log10(), 0.75))
