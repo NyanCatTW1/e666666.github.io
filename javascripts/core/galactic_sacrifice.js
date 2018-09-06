@@ -19,7 +19,12 @@ function getGSAmount() {
   let ret = Decimal.max(Decimal.pow(galaxies, y).times(Decimal.pow(Math.max(0,(player.resets - (player.currentChallenge=="challenge4"?2:4))),z)), 0);
   ret = ret.times(1 + player.eightAmount/50)
   if (player.galacticSacrifice.upgrades.includes(32)) {
-    ret = ret.times(galUpgrade32());
+    if (player.currentEternityChall===""){
+      ret = ret.times(galUpgrade32());
+    }
+    else{
+      ret = ret.times(galUpgrade32().pow(.1))
+    }
   }
   if (player.infinityUpgrades.includes("galPointMult")) {
     ret = ret.times(getPost01Mult())
@@ -97,7 +102,7 @@ let galUpgrade13 = function () {
     if (player.currentEternityChall === "") {
       exp = Math.pow(Math.log(player.resets+3),2);
     } else {
-      exp = Math.log(player.resets+3);
+      exp = Math.pow(Math.log(player.resets+3),0.5);
     }
   }
   return base.pow(exp);
