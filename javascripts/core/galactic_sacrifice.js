@@ -117,7 +117,7 @@ let galUpgrade32 = function () {
     x = x.min(Number.MAX_VALUE);
   }
   if (player.currentEternityChall==="") return x.pow(0.003).add(1);
-  return x.pow(0.0001).plus(1)
+  return x.pow(0.0001).add(1)
 }
 
 let galUpgrade33 = function () {
