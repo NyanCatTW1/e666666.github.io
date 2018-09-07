@@ -14,7 +14,7 @@ function getPurelyGalaxies (offset) {
     if (player.timestudy.studies.includes(132)) galaxies += player.replicanti.galaxies*0.4
     if (player.timestudy.studies.includes(225)) galaxies += Math.floor(player.replicanti.amount.e / 1000)
     if (player.timestudy.studies.includes(226)) galaxies += Math.floor(player.replicanti.gal / 15)
-    galaxies += Math.min(player.replicanti.galaxies, player.replicanti.gal) * Math.max(Math.pow(Math.log10(player.infinityPower.plus(1).log10()+1), 0.03 * ECTimesCompleted("eterc8"))-1, 0)
+    galaxies += Math.min(player.replicanti.galaxies, player.replicanti.gal) * Math.max(Math.pow(Math.log10(player.infinityPower.plus(1).log10()+1), 0.05 * ECTimesCompleted("eterc8"))-1, 0)
     if (player.currentChallenge === 'challenge7') galaxies = Math.pow(galaxies, 2);
     return galaxies;
 }
@@ -43,7 +43,7 @@ function getTickSpeedMultiplier() {
 }
 
 function getPostC3Exp (){
-  let g = player.replicanti.galaxies;
+  let g = getPurelyGalaxies(player.galaxies+player.dilation.freeGalaxies)
   if (player.timestudy.studies.includes(133)) g += player.replicanti.galaxies/2
   if (player.timestudy.studies.includes(132)) g += player.replicanti.galaxies*0.4
   if (player.timestudy.studies.includes(225)) g += Math.floor(player.replicanti.amount.e / 1000)
