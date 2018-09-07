@@ -3,9 +3,12 @@ function getGSAmount() {
   let y = 1.5 + Math.max(0, 0.05*(galaxies - 10)) + 0.005 * Math.pow(Math.max(0, galaxies-30) , 2) + 0.0005 * Math.pow(Math.max(0, galaxies-50) , 3);
   if (!player.challenges.includes("postc1")) y = 1.5
   else y *= .08*player.challenges.length
-  if (y>100) y = Math.pow(316.22*y,1/3)
-  else if (y>10) y = Math.pow(10*y , .5)
-
+  if (!player.galacticSacrifice.upgrades.includes(52)){
+    if (y>100) y = Math.pow(316.22*y,1/3)
+    else if (y>10) y = Math.pow(10*y , .5)
+  } else if (y >100){
+    y = Math.pow(100*y , .5)
+  }
   let z = 1
   if (player.challenges.length >17) {
     z = 0.06*player.challenges.length
@@ -67,8 +70,13 @@ let galUpgrade11 = function () {
   if (player.infinityUpgrades.includes("postinfi61")){
     x += 1e7
     z -= .1
+    if (player.galacticSacrifice.upgrades.length>9) x += player.galacticSacrifice.upgrades.length*1e7
   }
+  if (x>1e8) x= Math.pow(1e32*x,.2)
   if (player.eternities > 0) z -= 0.5
+  if (z<6) z = Math.pow(10077696*z,.1)
+  
+  
   if (x <= 0) {
     y = 2;
   } else if (x < 5) {
@@ -89,7 +97,13 @@ let galUpgrade12 = function () {
 let galUpgrade13 = function () {
   let base = player.galacticSacrifice.galaxyPoints.div(5).plus(1).pow(3);
   let exp = 1;
-  if (player.infinityUpgrades.includes("postinfi62")) exp = Math.pow(Math.log(player.resets+3),2)
+  if (player.infinityUpgrades.includes("postinfi62")) {
+    if (player.currentEternityChall === "") {
+      exp = Math.pow(Math.log(player.resets+3),2);
+    } else {
+      exp = Math.pow(Math.log(player.resets+3),0.5);
+    }
+  }
   return base.pow(exp);
 }
 
@@ -106,11 +120,20 @@ let galUpgrade32 = function () {
   if (!player.break && player.eternities === 0) {
     x = x.min(Number.MAX_VALUE);
   }
-  return x.pow(0.003).add(1);
+  if (player.currentEternityChall==="") return x.pow(0.003).add(1);
+  return x.pow(0.0028).add(1)
 }
 
 let galUpgrade33 = function () {
   return Math.max(2 + player.galacticSacrifice.galaxyPoints.log(10)*0.5, 2)
+}
+
+let galUpgrade43 = function () {
+  return Math.pow(player.galacticSacrifice.galaxyPoints.log10(), 5)
+}
+
+let galUpgrade51 = function () {
+  return player.galacticSacrifice.galaxyPoints.pow(.0001)
 }
 
 function galacticSacrifice() {
@@ -136,6 +159,15 @@ function galacticUpgradeSpanDisplay () {
   document.getElementById('galspan32').innerHTML = formatValue(player.options.notation, galUpgrade32(), 2, 2);
   document.getElementById('galspan33').innerHTML = (galUpgrade33()/2).toFixed(2);
   document.getElementById("galcost33").innerHTML = shortenCosts(1e3);
+  document.getElementById("galspan43").innerHTML = formatValue(player.options.notation, galUpgrade43(), 2,2);
+  document.getElementById("galspan51").innerHTML = formatValue(player.options.notation, galUpgrade51(), 2,2);
+  document.getElementById("galcost41").innerHTML = shortenCosts(new Decimal("1e1650"));
+  document.getElementById("galcost42").innerHTML = shortenCosts(new Decimal("1e2300"));
+  document.getElementById("galcost43").innerHTML = shortenCosts(new Decimal("1e3700"));
+  document.getElementById("galcost51").innerHTML = shortenCosts(new Decimal("1e5500"));
+  document.getElementById("galcost52").innerHTML = shortenCosts(new Decimal("1e8000"));
+  document.getElementById("galcost53").innerHTML = shortenCosts(new Decimal("1e25000"));
+
 }
 
 function newGalacticDataOnInfinity () {
@@ -165,7 +197,13 @@ let galUpgradeCosts = {
   23: 100,
   31: 2,
   32: 8,
-  33: 1000
+  33: 1000,
+  41: new Decimal('1e1700'),
+  42: new Decimal("1e2300"),
+  43: new Decimal("1e3600"),
+  51: new Decimal("1e5500"),
+  52: new Decimal("1e8000"),
+  53: new Decimal("1e25000")
 }
 
 function canBuyGalUpgrade(num) {
@@ -175,7 +213,7 @@ function canBuyGalUpgrade(num) {
 }
 
 function galacticUpgradeButtonTypeDisplay () {
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 5; i++) {
     for (let j = 1; j <= 3; j++) {
       let e = document.getElementById('galaxy' + i + j);
       let num = +(i + '' + j);
@@ -200,6 +238,12 @@ function buyGalaxyUpgrade (i) {
       TIER_NAMES.forEach(function(name) {
           if (name !== null) player[name+"Cost"] = player[name+"Cost"].div(100)
       })
+    }
+    if (i == 41) {
+      for (n=1;n<9;n++) {
+        var dim = player["infinityDimension"+n]
+        dim.power = Decimal.pow(getInfBuy10Mult(n), dim.baseAmount/10)
+      }
     }
     return true;
   }

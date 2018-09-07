@@ -36,6 +36,7 @@ function getFinalGalaxies(offset) {
 }
 
 function getTickSpeedMultiplier() {
+  // if (player.currentEternityChall === "eterc1") return 1;
   if (player.challenges.includes("postc3")) return Math.pow(.998, getFinalGalaxies(0))
   if (player.currentChallenge === "postc3") return Math.pow(.998, getFinalGalaxies(0))
   return 1;
@@ -47,7 +48,7 @@ function getPostC3Exp (){
   if (player.timestudy.studies.includes(132)) g += player.replicanti.galaxies*0.4
   if (player.timestudy.studies.includes(225)) g += Math.floor(player.replicanti.amount.e / 1000)
   if (player.timestudy.studies.includes(226)) g += Math.floor(player.replicanti.gal / 15)
-   
+
   if (g<7) return 1+g/5
   return 2+Math.pow(g-5,0.5)/5
 }

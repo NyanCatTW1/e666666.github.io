@@ -49,6 +49,7 @@ function updateInfinityDimensions() {
 
 function DimensionProduction(tier) {
   if (player.currentEternityChall == "eterc10") return new Decimal(0)
+  if (player.currentEternityChall == "eterc2")  return new Decimal(0)
   var dim = player["infinityDimension"+tier]
   var ret = dim.amount
   if (player.currentEternityChall == "eterc11") return ret
@@ -104,7 +105,7 @@ function DimensionPower(tier) {
 
   if (ECTimesCompleted("eterc9") !== 0) mult = mult.times(player.timeShards.pow(ECTimesCompleted("eterc9")*0.1).plus(1).min(new Decimal("1e400")))
 
-  if (mult.lt(0)) mult = new Decimal(0)
+  if (mult.lt(1)) mult = new Decimal(1)
 
 //if (player.dilation.active) {
     mult = Decimal.pow(10, Math.pow(mult.log10(), 0.75))
@@ -197,6 +198,21 @@ var infCostMults = [null, 1e3, 1e6, 1e8, 1e10, 1e15, 1e20, 1e25, 1e30]
 var infPowerMults = [null, 500, 300, 100, 50, 25, 10, 5, 5]
 var infBaseCost = [null, 1e8, 1e9, 1e10, 1e20, 1e140, 1e200, 1e250,1e280]
 
+function getInfBuy10Mult (tier){
+  if (!player.galacticSacrifice.upgrades.includes(41)) return infPowerMults[tier]
+  let mult = player.galacticSacrifice.galaxyPoints.log10()
+  return infPowerMults[tier]*Math.pow(mult,4)
+}
+
+function getInfBuy10CostDiv (tier){
+  let div = 1;
+  if (player.infinityUpgrades.includes("postinfi53")) div = 50
+  if (player.galacticSacrifice.upgrades.includes(42)) div *= 1 + 5 * Math.log10(player.eternityPoints.plus(1).log10()+1)
+  let MAX = Math.pow(infCostMults[tier],.9);
+  return Math.min(div,MAX)
+  
+}
+
 function buyManyInfinityDimension(tier) {
   if (player.eterc8ids <= 0 && player.currentEternityChall == "eterc8") return false
   var dim = player["infinityDimension"+tier]
@@ -205,9 +221,9 @@ function buyManyInfinityDimension(tier) {
   if (player.eterc8ids == 0) return false
   player.infinityPoints = player.infinityPoints.minus(dim.cost)
   dim.amount = dim.amount.plus(10);
-  dim.power = dim.power.times(infPowerMults[tier])
+  dim.power = dim.power.times(getInfBuy10Mult(tier))
   dim.baseAmount += 10
-  dim.cost = new Decimal(infBaseCost[tier]).times(Decimal.pow(infCostMults[tier]/(player.infinityUpgrades.includes("postinfi53")?50:1), (dim.baseAmount/10 + 1)*(ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1)))
+  dim.cost = new Decimal(infBaseCost[tier]).times(Decimal.pow(infCostMults[tier]/getInfBuy10CostDiv(tier), (dim.baseAmount/10 + 1)*(ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1)))
 
   if (player.currentEternityChall == "eterc8") player.eterc8ids-=1
   document.getElementById("eterc8ids").textContent = "You have "+player.eterc8ids+" purchases left."
@@ -220,13 +236,13 @@ function buyMaxInfDims(tier) {
   if (player.infinityPoints.lt(dim.cost)) return false
   if (!player.infDimensionsUnlocked[tier-1]) return false
 
-  let costMult = Math.pow(infCostMults[tier]/(player.infinityUpgrades.includes("postinfi53")?50:1), ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1);
+  let costMult = Math.pow(infCostMults[tier]/getInfBuy10CostDiv(tier), ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1);
   var toBuy = Math.floor((player.infinityPoints.e - dim.cost.e) / Math.log10(costMult))
   dim.cost = dim.cost.times(Decimal.pow(costMult, toBuy-1))
   player.infinityPoints = player.infinityPoints.minus(dim.cost)
   dim.cost = dim.cost.times(costMult)
   dim.amount = dim.amount.plus(10*toBuy);
-  dim.power = dim.power.times(Decimal.pow(infPowerMults[tier], toBuy))
+  dim.power = dim.power.times(Decimal.pow(getInfBuy10Mult(tier), toBuy))
   dim.baseAmount += 10*toBuy
   buyManyInfinityDimension(tier)
 }
