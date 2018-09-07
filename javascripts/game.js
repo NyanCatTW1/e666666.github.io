@@ -5000,7 +5000,7 @@ setInterval(function() {
     document.getElementById("eterc4goal").textContent = "Goal: "+shortenCosts(new Decimal("1e6500").times(new Decimal("1e1000").pow(ECTimesCompleted("eterc4"))).max(new Decimal("1e2750"))) + " IP in "+Math.max((16 - (ECTimesCompleted("eterc4")*4)), 0)+" infinities or less."
     document.getElementById("eterc4completed").textContent = "Completed "+ECTimesCompleted("eterc4")+" times."
 
-    document.getElementById("eterc5goal").textContent = "Goal: "+shortenCosts(new Decimal("1e500").times(new Decimal("1e300").pow(ECTimesCompleted("eterc5"))).max(new Decimal("1e750"))) + " IP"
+    document.getElementById("eterc5goal").textContent = "Goal: "+shortenCosts(new Decimal("1e550").times(new Decimal("1e300").pow(ECTimesCompleted("eterc5"))).max(new Decimal("1e750"))) + " IP"
     document.getElementById("eterc5completed").textContent = "Completed "+ECTimesCompleted("eterc5")+" times."
 
     document.getElementById("eterc6goal").textContent = "Goal: "+shortenCosts(new Decimal("1e850").times(new Decimal("1e250").pow(ECTimesCompleted("eterc6"))).max(new Decimal("1e850"))) + " IP"
