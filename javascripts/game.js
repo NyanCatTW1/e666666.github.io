@@ -4988,19 +4988,19 @@ setInterval(function() {
         while (upgradeReplicantiGalaxy()) continue
     }
 
-    document.getElementById("eterc1goal").textContent = "Goal: "+shortenCosts(new Decimal("1e3600").times(new Decimal("1e400").pow(ECTimesCompleted("eterc1"))).max(new Decimal("1e3600"))) + " IP"
+    document.getElementById("eterc1goal").textContent = "Goal: "+shortenCosts(new Decimal("1e2675").times(new Decimal("1e400").pow(ECTimesCompleted("eterc1"))).max(new Decimal("1e3600"))) + " IP"
     document.getElementById("eterc1completed").textContent = "Completed "+ECTimesCompleted("eterc1")+" times."
 
     document.getElementById("eterc2goal").textContent = "Goal: "+shortenCosts(new Decimal("1e1125").times(new Decimal("1e175").pow(ECTimesCompleted("eterc2"))).max(new Decimal("1e975"))) + " IP"
     document.getElementById("eterc2completed").textContent = "Completed "+ECTimesCompleted("eterc2")+" times."
 
-    document.getElementById("eterc3goal").textContent = "Goal: "+shortenCosts(new Decimal("1e1375").times(new Decimal("1e100").pow(ECTimesCompleted("eterc3"))).max(new Decimal("1e575"))) + " IP"
+    document.getElementById("eterc3goal").textContent = "Goal: "+shortenCosts(new Decimal("1e1025").times(new Decimal("1e100").pow(ECTimesCompleted("eterc3"))).max(new Decimal("1e575"))) + " IP"
     document.getElementById("eterc3completed").textContent = "Completed "+ECTimesCompleted("eterc3")+" times."
 
     document.getElementById("eterc4goal").textContent = "Goal: "+shortenCosts(new Decimal("1e6500").times(new Decimal("1e1000").pow(ECTimesCompleted("eterc4"))).max(new Decimal("1e2750"))) + " IP in "+Math.max((16 - (ECTimesCompleted("eterc4")*4)), 0)+" infinities or less."
     document.getElementById("eterc4completed").textContent = "Completed "+ECTimesCompleted("eterc4")+" times."
 
-    document.getElementById("eterc5goal").textContent = "Goal: "+shortenCosts(new Decimal("1e550").times(new Decimal("1e300").pow(ECTimesCompleted("eterc5"))).max(new Decimal("1e750"))) + " IP"
+    document.getElementById("eterc5goal").textContent = "Goal: "+shortenCosts(new Decimal("1e600").times(new Decimal("1e300").pow(ECTimesCompleted("eterc5"))).max(new Decimal("1e750"))) + " IP"
     document.getElementById("eterc5completed").textContent = "Completed "+ECTimesCompleted("eterc5")+" times."
 
     document.getElementById("eterc6goal").textContent = "Goal: "+shortenCosts(new Decimal("1e850").times(new Decimal("1e250").pow(ECTimesCompleted("eterc6"))).max(new Decimal("1e850"))) + " IP"
