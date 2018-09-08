@@ -719,8 +719,7 @@ function updateDimensions() {
             document.getElementById("infi32").innerHTML = "Multiplier for unspent Infinity Points on 1st Dimension<br>Currently: " + formatValue(player.options.notation, getUnspentIPBonus(), 2, 2) + "x<br>Cost: 5 IP"
             document.getElementById("infi33").innerHTML = "Dimension boosts are stronger<br>Currently: " + formatValue(player.options.notation, getResetMult(), 2, 2) + "x<br>Cost: 7 IP"
             document.getElementById("infi34").innerHTML = "Infinity Point generation based on fastest infinity <br>Currently: "+shortenDimensions(getIPMult())+" every " + timeDisplay(player.bestInfinityTime*10) + "<br>Cost: 10 IP"
-        }
-        else if (document.getElementById("postinf").style.display == "block") {
+        } else if (document.getElementById("postinf").style.display == "block") {
             document.getElementById("postinfi01").innerHTML = "Multiplier to galaxy points based on infinities<br>Currently: "+formatValue(player.options.notation, getPost01Mult(), 2, 2)+"x<br>Cost: "+shortenCosts(1e3)+" IP"
             document.getElementById("postinfi02").innerHTML = "Decrease dimension boost cost increase by 1<br>Currently: "+ getDimboostCostIncrease() + ' -> ' + (getDimboostCostIncrease() - 1)+"<br>Cost: "+shortenCosts(2e4)+" IP"
             if (player.infinityUpgrades.includes("dimboostCost")) document.getElementById("postinfi02").innerHTML = "Decrease dimension boost cost increase by 1<br>Currently: "+ getDimboostCostIncrease()+"<br>Cost: "+shortenCosts(2e4)+" IP"
@@ -759,10 +758,11 @@ function updateDimensions() {
 	          document.getElementById("postinfi61").innerHTML = "Make g11 better <br> Cost: " + formatValue(player.options.notation,new Decimal("1e450"), 2,0) + " IP"
             document.getElementById("postinfi62").innerHTML = "Make g13 better based on dimboosts <br> Cost: " + formatValue(player.options.notation,new Decimal("1e700"), 2,0) + " IP"
             document.getElementById("postinfi63").innerHTML = "Unlock two new rows of galaxy upgrades <br> Cost: " + formatValue(player.options.notation,new Decimal("1e2000"), 2,0) + " IP"
-            document.getElementById("newgalrow1").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
-            document.getElementById("newgalrow2").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
-  }
+        }
     }
+
+    document.getElementById("newgalrow1").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
+    document.getElementById("newgalrow2").style.display = (player.infinityUpgrades.includes("postinfi63"))?"":"none"
 
     galacticUpgradeSpanDisplay();
 
