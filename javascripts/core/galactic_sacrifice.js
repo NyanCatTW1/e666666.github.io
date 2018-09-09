@@ -33,7 +33,7 @@ function getGSAmount() {
 
 function totalEc(){
   let x=0
-  for(i=0; i<=13;i++){
+  for(i=0; i<=12;i++){
     x += ECTimesCompleted("eterc"+i)
     
   }
@@ -87,12 +87,12 @@ let galUpgrade11 = function () {
   
   if (totalEc()>0){
     x += 1e10* totalEc()
-    z -= Math.pow(totalEc,0.3)/10
+    z -= Math.pow(totalEc(),0.3)/10
   }
   
-  if (x>1e8) x= Math.pow(1e32*x,.2)
+  if (x>1e8) x= Math.pow(1e8*x,.5)
   if (player.eternities > 0) z -= 0.5
-  if (z<6) z = Math.pow(10077696*z,.1)
+  if (z<6) z = Math.pow(1296*z,.2)
   
   
   if (x <= 0) {
