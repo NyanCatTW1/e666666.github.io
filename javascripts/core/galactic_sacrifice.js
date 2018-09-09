@@ -31,6 +31,17 @@ function getGSAmount() {
   return ret.floor();
 }
 
+function totalEc(){
+  let x=0
+  for(i=0; i<=13;i++){
+    x += ECTimesCompleted("eterc"+i)
+    
+  }
+  return x
+}
+
+
+
 function thatsFastReward () {
   if (player.bestInfinityTime >= 18000) {
     return Math.max(180000 / player.bestInfinityTime, 1);
@@ -67,11 +78,18 @@ let galUpgrade11 = function () {
   if (player.challenges.length >14 && player.eternities >0 && player.infinitied < 1e8){
     x += 2e6
   }
+  
   if (player.infinityUpgrades.includes("postinfi61")){
     x += 1e7
     z -= .1
     if (player.galacticSacrifice.upgrades.length>9) x += player.galacticSacrifice.upgrades.length*1e7
   }
+  
+  if (totalEc()>0){
+    x += 1e10* totalEc()
+    z -= Math.pow(totalEc,0.3)/10
+  }
+  
   if (x>1e8) x= Math.pow(1e32*x,.2)
   if (player.eternities > 0) z -= 0.5
   if (z<6) z = Math.pow(10077696*z,.1)
@@ -87,6 +105,7 @@ let galUpgrade11 = function () {
     y = Math.pow(Math.log(x), Math.log(x) / z) + 14;
   }
   if (y>1000) y = Math.pow(1000*y,.5)
+  if (y>1e4)  y = Math.pow(1e8*y,1/3)
   return Decimal.pow(10, y);
 }
 
