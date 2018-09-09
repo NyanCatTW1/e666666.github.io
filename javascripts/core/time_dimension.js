@@ -60,7 +60,7 @@ function getTimeDimensionProduction(tier) {
   var ret = dim.amount
   ret = ret.times(getTimeDimensionPower(tier))
   if (player.currentEternityChall == "eterc7") {
-      ret = ret.dividedBy(player.tickspeed.dividedBy(1000))
+      ret = ret.dividedBy(getDilatedTickspeed())
   }
   if (player.currentEternityChall == "eterc1") return new Decimal(0)
   return ret

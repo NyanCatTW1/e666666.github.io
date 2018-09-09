@@ -647,14 +647,7 @@ function dimMults() {
 function getDimensionProductionPerSecond(tier) {
     let ret = Decimal.floor(player[TIER_NAMES[tier] + 'Amount']).times(getDimensionFinalMultiplier(tier)).times(1000).dividedBy(player.tickspeed)
     if (player.currentChallenge == "challenge2" || player.currentChallenge == "postc4") ret = ret.times(player.chall2Pow)
-    // if (player.dilation.active) {
-        let tick = new Decimal(player.tickspeed)
-        tick = Decimal.pow(10, Math.pow((tick.log10()*-1)+3, 0.75))
-        if (player.dilation.upgrades.includes(9)) {
-            tick = Decimal.pow(10, Math.pow((tick.log10()*-1)+3, 1.05))
-          }
-        tick = new Decimal(1).dividedBy(tick)
-        ret = Decimal.floor(player[TIER_NAMES[tier] + 'Amount']).times(getDimensionFinalMultiplier(tier)).dividedBy(tick)
-    // }
+    let tick = getDilatedTickspeed();
+    ret = Decimal.floor(player[TIER_NAMES[tier] + 'Amount']).times(getDimensionFinalMultiplier(tier)).dividedBy(tick)
     return ret;
 }

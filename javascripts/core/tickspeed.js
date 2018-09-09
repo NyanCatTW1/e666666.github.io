@@ -75,6 +75,16 @@ function getTickSpeedCostMultiplierIncrease (adjust) {
   return ret;
 }
 
+function getDilatedTickspeed () {
+  let tick = new Decimal(player.tickspeed)
+  tick = Decimal.pow(10, Math.pow((tick.log10()*-1)+3, 0.75))
+  if (player.dilation.upgrades.includes(9)) {
+    tick = Decimal.pow(10, Math.pow((tick.log10()*-1)+3, 1.05))
+  }
+  tick = new Decimal(1).dividedBy(tick)
+  return tick;
+}
+
 function buyTickSpeed() {
   if (!canBuyTickSpeed()) {
       return false;

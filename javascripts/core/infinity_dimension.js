@@ -53,17 +53,10 @@ function DimensionProduction(tier) {
   var dim = player["infinityDimension"+tier]
   var ret = dim.amount
   if (player.currentEternityChall == "eterc11") return ret
-  if (player.currentEternityChall == "eterc7") ret = ret.dividedBy(player.tickspeed.dividedBy(1000))
+  let tick = getDilatedTickspeed();
+  if (player.currentEternityChall == "eterc7") ret = ret.dividedBy(tick)
   if (player.challenges.includes("postc8")) {
-      let tick = new Decimal(player.tickspeed)
-//    if (player.dilation.active) {
-        tick = Decimal.pow(10, Math.pow(Math.abs(tick.log10()), 0.75))
-        if (player.dilation.upgrades.includes(9)) {
-          tick = Decimal.pow(10, Math.pow(Math.abs(tick.log10()), 1.05))
-        }
-//    }
-      tick = new Decimal(1).dividedBy(tick)
-      return ret.times(DimensionPower(tier)).times(tick.times(1000).pow(0.0005))
+      return ret.times(DimensionPower(tier)).dividedBy(tick.pow(0.0005))
   }
   else return ret.times(DimensionPower(tier))
 }
@@ -210,7 +203,7 @@ function getInfBuy10CostDiv (tier){
   if (player.galacticSacrifice.upgrades.includes(42)) div *= 1 + 5 * Math.log10(player.eternityPoints.plus(1).log10()+1)
   let MAX = Math.pow(infCostMults[tier],.9);
   return Math.min(div,MAX)
-  
+
 }
 
 function buyManyInfinityDimension(tier) {
@@ -237,7 +230,7 @@ function buyMaxInfDims(tier) {
   if (!player.infDimensionsUnlocked[tier-1]) return false
 
   let costMult = Math.pow(infCostMults[tier]/getInfBuy10CostDiv(tier), ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1);
-  var toBuy = Math.floor((player.infinityPoints.e - dim.cost.e) / Math.log10(costMult))
+  var toBuy = Math.floor((player.infinityPoints.log(10) - dim.cost.log(10)) / Math.log10(costMult))
   dim.cost = dim.cost.times(Decimal.pow(costMult, toBuy-1))
   player.infinityPoints = player.infinityPoints.minus(dim.cost)
   dim.cost = dim.cost.times(costMult)
