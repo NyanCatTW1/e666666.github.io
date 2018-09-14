@@ -20,7 +20,6 @@ function getTimeDimensionPower(tier) {
   if (player.timestudy.studies.includes(221)) ret = ret.times(Decimal.pow(1.01, player.resets))
   if (player.timestudy.studies.includes(227) && tier == 4) ret = ret.times(Math.max(Math.pow(calcTotalSacrificeBoost().log10(), 100), 1))
   if (player.currentEternityChall == "eterc9") ret = ret.times((Decimal.pow(Math.max(player.infinityPower.log2(), 1), 4)).max(1))
-  if (ECTimesCompleted("eterc1") !== 0) ret = ret.times(Math.pow(Math.max(player.thisEternity*10, 0.9), 0.9+(ECTimesCompleted("eterc1")*0.15)))
   let ec10bonus = new Decimal(1)
   if (ECTimesCompleted("eterc10") !== 0) ec10bonus = new Decimal(Math.max(Math.pow(getInfinitied(), 2) * ECTimesCompleted("eterc10") * 0.02+1, 1))
   if (player.timestudy.studies.includes(31)) ec10bonus = ec10bonus.pow(4)
@@ -45,8 +44,10 @@ function getTimeDimensionPower(tier) {
     if (player.dilation.upgrades.includes(9)) {
       ret = Decimal.pow(10, Math.pow(ret.log10(), 1.05))
     }
+  
 //}
-
+  if (ECTimesCompleted("eterc1") !== 0) ret = ret.times(Math.pow(Math.max(player.thisEternity*10, 0.9), 1.2+(ECTimesCompleted("eterc1")*0.2)))
+  
 
   return ret
 
