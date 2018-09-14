@@ -152,7 +152,7 @@ let galUpgrade43 = function () {
 }
 
 let galUpgrade51 = function () {
-  return player.galacticSacrifice.galaxyPoints.pow(.0005)
+  return player.galacticSacrifice.galaxyPoints.pow(.001)
 }
 
 function galacticSacrifice() {
