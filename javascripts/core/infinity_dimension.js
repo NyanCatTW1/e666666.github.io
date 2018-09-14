@@ -54,7 +54,7 @@ function DimensionProduction(tier) {
   var ret = dim.amount
   if (player.currentEternityChall == "eterc11") return ret
   if (player.currentEternityChall == "eterc7") {
-    ret = ret.dividedBy(player.tickspeed.dividedBy(1000))
+    ret = ret.dividedBy(player.tickspeed.dividedBy(1000)).max(1)
     ret = Decimal.pow(10, Math.pow(ret.log10(), 0.75))
     if (player.dilation.upgrades.includes(9)) {
       ret = Decimal.pow(10, Math.pow(ret.log10(), 1.05))
