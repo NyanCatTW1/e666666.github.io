@@ -5009,7 +5009,7 @@ setInterval(function() {
     document.getElementById("eterc7goal").textContent = "Goal: "+shortenCosts(new Decimal("1e10000").times(new Decimal("1e1530").pow(ECTimesCompleted("eterc7"))).max(new Decimal("1e2000"))) + " IP"
     document.getElementById("eterc7completed").textContent = "Completed "+ECTimesCompleted("eterc7")+" times."
 
-    document.getElementById("eterc8goal").textContent = "Goal: "+shortenCosts(new Decimal("1e2200").times(new Decimal("1e500").pow(ECTimesCompleted("eterc8"))).max(new Decimal("1e1300"))) + " IP"
+    document.getElementById("eterc8goal").textContent = "Goal: "+shortenCosts(new Decimal("1e2100").times(new Decimal("1e500").pow(ECTimesCompleted("eterc8"))).max(new Decimal("1e1300"))) + " IP"
     document.getElementById("eterc8completed").textContent = "Completed "+ECTimesCompleted("eterc8")+" times."
 
     document.getElementById("eterc9goal").textContent = "Goal: "+shortenCosts(new Decimal("1e2250").times(new Decimal("1e300").pow(ECTimesCompleted("eterc9"))).max(new Decimal("1e1750"))) + " IP"
@@ -5727,9 +5727,9 @@ function gameLoop(diff) {
     }
 
     document.getElementById("ec1reward").textContent = "Reward: "+shortenMoney(Math.pow(Math.max(player.thisEternity*10, 1), 1.2+(ECTimesCompleted("eterc1")*0.2)))+"x post-dilation on all Time Dimensions (based on time spent this Eternity)"
-    document.getElementById("ec2reward").textContent = "Reward: Infinity power affects 1st Infinity Dimension with reduced effect, Currently: "+shortenMoney(player.infinityPower.pow(4.5/(700 - ECTimesCompleted("eterc2")*100)).max(1))+"x"
+    document.getElementById("ec2reward").textContent = "Reward: Infinity power affects 1st Infinity Dimension with reduced effect, Currently: "+shortenMoney(player.infinityPower.plus(1).log10().pow(1000).times(player.infinityPower.pow(4.5/(700 - ECTimesCompleted("eterc2")*100))).max(1))+"x"
     document.getElementById("ec3reward").textContent = "Reward: Increase the multiplier for buying 10 dimensions, Currently: "+getDimensionPowerMultiplier().toFixed(2)+"x"
-    document.getElementById("ec4reward").textContent = "Reward: Infinity Dimension multiplier from unspent IP, Currently: "+shortenMoney(player.infinityPoints.pow(0.009 + ECTimesCompleted("eterc4")*0.006))+"x"
+    document.getElementById("ec4reward").textContent = "Reward: Infinity Dimension multiplier from unspent IP, Currently: "+shortenMoney(player.infinityPoints.pow(0.09 + ECTimesCompleted("eterc4")*0.06))+"x"
     document.getElementById("ec5reward").textContent = "Reward: Galaxy cost scaling starts "+((ECTimesCompleted("eterc5")*5))+" galaxies later."
     document.getElementById("ec6reward").textContent = "Reward: Further reduce the dimension cost multiplier increase, Currently: "+player.dimensionMultDecrease.toFixed(1)+"x "
     document.getElementById("ec7reward").textContent = "Reward: First Time dimension produces Eighth Infinity Dimensions, Currently: "+shortenMoney(getTimeDimensionProduction(1).pow(ECTimesCompleted("eterc7")*0.2).minus(1).max(0))+" per second. "
