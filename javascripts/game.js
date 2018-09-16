@@ -574,7 +574,14 @@ function gSacrificeConf() {
     player.options.gSacrificeConfirmation = !player.options.gSacrificeConfirmation
 }
 
-
+function changeToDilation(x){
+    if (x.lte(0)) return 0
+    x = Decimal.pow(10, Math.pow(x.log10(), 0.75))
+    if (player.dilation.upgrades.includes(9)) {
+      x = Decimal.pow(10, Math.pow(x.log10(), 1.05))
+    }
+    return x
+}
 
 
 function updateDimensions() {
@@ -5006,7 +5013,7 @@ setInterval(function() {
     document.getElementById("eterc6goal").textContent = "Goal: "+shortenCosts(new Decimal("1e850").times(new Decimal("1e225").pow(ECTimesCompleted("eterc6"))).max(new Decimal("1e850"))) + " IP"
     document.getElementById("eterc6completed").textContent = "Completed "+ECTimesCompleted("eterc6")+" times."
 
-    document.getElementById("eterc7goal").textContent = "Goal: "+shortenCosts(new Decimal("1e10000").times(new Decimal("1e1530").pow(ECTimesCompleted("eterc7"))).max(new Decimal("1e2000"))) + " IP"
+    document.getElementById("eterc7goal").textContent = "Goal: "+shortenCosts(new Decimal("1e1450").times(new Decimal("1e300").pow(ECTimesCompleted("eterc7"))).max(new Decimal("1e2000"))) + " IP"
     document.getElementById("eterc7completed").textContent = "Completed "+ECTimesCompleted("eterc7")+" times."
 
     document.getElementById("eterc8goal").textContent = "Goal: "+shortenCosts(new Decimal("1e2100").times(new Decimal("1e500").pow(ECTimesCompleted("eterc8"))).max(new Decimal("1e1300"))) + " IP"
