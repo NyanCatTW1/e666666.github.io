@@ -104,7 +104,7 @@ function DimensionPower(tier) {
 
   if (player.timestudy.studies.includes(92)) mult = mult.times(Decimal.pow(2, 600/Math.max(player.bestEternity, 20)))
   if (player.timestudy.studies.includes(162)) mult = mult.times(1e234)
-  if (ECTimesCompleted("eterc2") !== 0 && tier == 1) mult = mult.times(player.infinityPower.pow(4.5/(700-ECTimesCompleted("eterc2")*100)).times(player.infinityPower.plus(10).log10().pow(1000)).plus(1))
+  if (ECTimesCompleted("eterc2") !== 0 && tier == 1) mult = mult.times(player.infinityPower.pow(4.5/(700-ECTimesCompleted("eterc2")*100)).plus(1)).times(player.infinityPower.plus(10).log10().pow(1000))
   if (player.currentEternityChall == "eterc2") mult = mult.times(0)
 
   if (ECTimesCompleted("eterc4") !== 0) mult = mult.times(player.infinityPoints.pow(0.09 + ECTimesCompleted("eterc4")*0.06))
