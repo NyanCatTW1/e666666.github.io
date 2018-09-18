@@ -51,9 +51,11 @@ function getPostC3Exp (){
 
   if (g<7) return 1+g/5
   if (player.currentEternityChall==""){
-      if (totalEc()>=38) return 2+Math.pow(g-5,0.7)/5
-      if (totalEc()>=30) return 2+Math.pow(g-5,0.6)/5
+      if (totalEc()>=43) return Math.pow(g-5,0.9)
+      if (totalEc()>=38) return 2+Math.pow(g-5,0.9)/5
+      if (totalEc()>=30) return 2+Math.pow(g-5,0.8)/5
   }
+  if (totalEc()>=30) return 2+Math.pow(g-5,0.6)/5
   return 2+Math.pow(g-5,0.5)/5
 }
 
