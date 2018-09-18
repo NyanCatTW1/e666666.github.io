@@ -50,6 +50,10 @@ function getPostC3Exp (){
   if (player.timestudy.studies.includes(226)) g += Math.floor(player.replicanti.gal / 15)
 
   if (g<7) return 1+g/5
+  if (player.currentEternityChall==""){
+      if (totalEc()>=38) return 2+Math.pow(g-5,0.7)/5
+      if (totalEc()>=30) return 2+Math.pow(g-5,0.6)/5
+  }
   return 2+Math.pow(g-5,0.5)/5
 }
 
