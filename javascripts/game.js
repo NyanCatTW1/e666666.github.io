@@ -5004,7 +5004,7 @@ setInterval(function() {
     document.getElementById("eterc3goal").textContent = "Goal: "+shortenCosts(new Decimal("1e1025").times(new Decimal("1e100").pow(ECTimesCompleted("eterc3"))).max(new Decimal("1e575"))) + " IP"
     document.getElementById("eterc3completed").textContent = "Completed "+ECTimesCompleted("eterc3")+" times."
 
-    document.getElementById("eterc4goal").textContent = "Goal: "+shortenCosts(new Decimal("1e6500").times(new Decimal("1e1000").pow(ECTimesCompleted("eterc4"))).max(new Decimal("1e2750"))) + " IP in "+Math.max((16 - (ECTimesCompleted("eterc4")*4)), 0)+" infinities or less."
+    document.getElementById("eterc4goal").textContent = "Goal: "+shortenCosts(new Decimal("1e4000").times(new Decimal("1e850").pow(ECTimesCompleted("eterc4"))).max(new Decimal("1e2750"))) + " IP in "+Math.max((16 - (ECTimesCompleted("eterc4")*4)), 0)+" infinities or less."
     document.getElementById("eterc4completed").textContent = "Completed "+ECTimesCompleted("eterc4")+" times."
 
     document.getElementById("eterc5goal").textContent = "Goal: "+shortenCosts(new Decimal("1e600").times(new Decimal("1e300").pow(ECTimesCompleted("eterc5"))).max(new Decimal("1e750"))) + " IP"
