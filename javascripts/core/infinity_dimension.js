@@ -108,9 +108,6 @@ function DimensionPower(tier) {
   if (player.currentEternityChall == "eterc2") mult = mult.times(0)
 
   if (ECTimesCompleted("eterc4") !== 0) mult = mult.times(player.infinityPoints.pow(0.4 + ECTimesCompleted("eterc4")*0.2))
-
-  if (ECTimesCompleted("eterc9") !== 0) mult = mult.times(player.timeShards.pow(ECTimesCompleted("eterc9")*0.5).plus(1).min(new Decimal("1e4000")))
-
   if (mult.lt(1)) mult = new Decimal(1)
 
 //if (player.dilation.active) {
@@ -125,7 +122,8 @@ function DimensionPower(tier) {
 
       mult = mult.times(replmult)
   }
-
+  // also post-dilation
+  if (ECTimesCompleted("eterc9") !== 0) mult = mult.times(player.timeShards.pow(ECTimesCompleted("eterc9")*0.5).plus(1).min(new Decimal("1e4000")))
   return mult
 }
 
