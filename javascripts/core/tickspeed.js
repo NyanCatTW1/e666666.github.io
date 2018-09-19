@@ -78,9 +78,6 @@ function getTickSpeedCostMultiplierIncrease (adjust) {
     ret = Math.pow(ret, .9);
     ret = Math.pow(ret, 1 / (1 + Math.pow(player.galaxies, 0.7) / 10));
   }
-  if (totalEc()>=46) return Math.pow(ret,1/(1+Math.pow(player.galaxies, 0.5)))
-  if (totalEc()>=36) return Math.pow(ret,1/(1+Math.pow(player.galaxies, 0.4)))
-  if (totalEc()>=33) return Math.pow(ret,1/(1+Math.pow(player.galaxies, 0.3)))
   return ret;
 }
 
