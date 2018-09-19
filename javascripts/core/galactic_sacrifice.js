@@ -148,12 +148,13 @@ let galUpgrade33 = function () {
 }
 
 let galUpgrade43 = function () {
-  return player.galacticSacrifice.galaxyPoints.log10().pow(50)
+  return new Decimal(player.galacticSacrifice.galaxyPoints.log10()).pow(50)
 }
 
 let galUpgrade51 = function () {
   let x = player.galacticSacrifice.galaxyPoints.pow(.001)
-  if (x.log10()>20) return Decimal.pow(10,Math.pow(20*x,.5))
+  if (x.log10()>20) return Decimal.pow(10,Math.pow(20*x.log10(),.5))
+  return x
 }
 
 function galacticSacrifice() {
