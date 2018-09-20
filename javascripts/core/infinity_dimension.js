@@ -130,7 +130,7 @@ function DimensionPower(tier) {
 function getReplMult () {
   let replmult = Decimal.pow(Decimal.log2(player.replicanti.amount), Math.pow(player.galaxies, .4))
 
-  if (player.timestudy.studies.includes(21)) replmult = replmult.plus(Decimal.pow(player.replicanti.amount, Math.pow(player.galaxies, .5) / 100))
+  if (player.timestudy.studies.includes(21)) replmult = replmult.plus(Decimal.pow(player.replicanti.amount, Math.pow(player.galaxies, .5)))
   if (player.timestudy.studies.includes(102)) replmult = replmult.times(Decimal.pow(5, player.replicanti.galaxies))
   return replmult;
 }
