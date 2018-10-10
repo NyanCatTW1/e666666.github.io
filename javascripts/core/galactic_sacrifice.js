@@ -139,8 +139,7 @@ let galUpgrade32 = function () {
   if (!player.break && player.eternities === 0) {
     x = x.min(Number.MAX_VALUE);
   }
-  if (player.currentEternityChall==="") return x.pow(0.003).add(1);
-  return x.pow(0.0028).add(1)
+  return x.pow(0.003).add(1);
 }
 
 let galUpgrade33 = function () {
