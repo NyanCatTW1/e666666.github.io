@@ -622,8 +622,14 @@ if (player.version < 5) {
   for (tier=1;tier<9;tier++) {
     let dim = player["infinityDimension"+tier]
     dim.cost = new Decimal(infBaseCost[tier]).times(Decimal.pow(infCostMults[tier]/(player.infinityUpgrades.includes("postinfi53")?50:1), (dim.baseAmount/10)*(ECTimesCompleted("eterc12")?1-ECTimesCompleted("eterc12")*0.008:1)))
+    var name = TIER_NAMES[tier]
+    if (player[name + "Cost"].equals(0)) {
+      console.log("Solving cost 0 issue")
+      softReset(0)
+    }
   }
-
+  
+  
   updateInfinityDimensions()
   updateAutobuyers();
   setAchieveTooltip();
