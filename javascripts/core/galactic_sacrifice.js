@@ -28,7 +28,7 @@ function getGSAmount() {
     ret = ret.times(thatsFastReward());
   }
   if (player.achievements.includes("r62")) ret = ret.times(Math.max(1, player.infinityPoints.log10()))
-  return ret.floor();
+  return ret.floor().min(“1e20000”);
 }
 
 function totalEc(){
