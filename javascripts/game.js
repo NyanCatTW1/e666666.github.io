@@ -6007,13 +6007,17 @@ function autoBuyerTick() {
 
 
     if (player.autobuyers[9]%1 !== 0) {
-        if (player.autobuyers[9].isOn) {
-            if (player.resets < 4) softReset(1)
-            else if (dimBoolean()) {
-                if (player.eternities < 10) softReset(player.autobuyers[9].bulk)
-                else if ((Math.round(timer * 100))%(Math.round(player.autobuyers[9].bulk * 100)) == 0 && player.eightAmount >= getShiftRequirement(0).amount) maxBuyDimBoosts()
-            	player.autobuyers[9].ticks = 0
-	    }
+        if (dimBoolean()) {
+            if (player.resets < 4) {
+                softReset(1);
+                player.autobuyers[9].ticks = 0
+            } else if (player.eternities < 10) {
+                softReset(player.autobuyers[9].bulk);
+                player.autobuyers[9].ticks = 0
+            } else if ((Math.round(timer * 100))%(Math.round(player.autobuyers[9].bulk * 100)) == 0 && player.eightAmount >= getShiftRequirement(0).amount) {
+                maxBuyDimBoosts();
+                player.autobuyers[9].ticks = 0
+            }
         }
         player.autobuyers[9].ticks += 1;
     }
