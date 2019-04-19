@@ -107,7 +107,7 @@ let galUpgrade11 = function () {
   }
   if (y>1000) y = Math.pow(1000*y,.5)
   if (y>1e4)  y = Math.pow(1e8*y,1/3)
-  return Decimal.pow(10, y).min(“1e20000”);
+  return Decimal.pow(10, y).min(Decimal.pow(10,20000));
 }
 
 let galUpgrade12 = function () {
