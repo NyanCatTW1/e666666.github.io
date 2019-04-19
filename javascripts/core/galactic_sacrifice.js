@@ -28,7 +28,7 @@ function getGSAmount() {
     ret = ret.times(thatsFastReward());
   }
   if (player.achievements.includes("r62")) ret = ret.times(Math.max(1, player.infinityPoints.log10()))
-  return ret.floor().min(“1e20000”);
+  return ret.floor();
 }
 
 function totalEc(){
@@ -72,6 +72,7 @@ function decreaseDimCosts () {
 let galUpgrade11 = function () {
   let x = player.infinitied;
   let y;
+  if (player.eternities <=0 && x>1e6) x=1e6;
   let z = 10
   if (player.challenges.length > 14) z -= (player.challenges.length-8)/4
   if (player.challenges.length >20) z += 0.085*player.challenges.length-1.5
@@ -106,7 +107,7 @@ let galUpgrade11 = function () {
   }
   if (y>1000) y = Math.pow(1000*y,.5)
   if (y>1e4)  y = Math.pow(1e8*y,1/3)
-  return Decimal.pow(10, y);
+  return Decimal.pow(10, y).min(“1e20000”);
 }
 
 let galUpgrade12 = function () {
