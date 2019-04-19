@@ -504,7 +504,7 @@ function hasInfinityMult(tier) {
                     if (buying <= 0) return false
                     if (buying > bulk) buying = bulk
                     player[name+"Amount"] = Decimal.round(player[name+"Amount"].plus(10*buying))
-                    preInfBuy = Math.floor(1 + (308 - initCost[tier].log10() + (player.galacticSacrifice.upgrades.includes(11)?galUpgrade11().log10():0) / costMults[tier].log10()))
+                    preInfBuy = Math.floor(1 + (308 - initCost[tier].log10() + (player.galacticSacrifice.upgrades.includes(11)?galUpgrade11().log10():0)) / costMults[tier].log10())
                     postInfBuy = player[name + 'Bought']/10+buying - preInfBuy - 1
                     postInfInitCost = initCost[tier].times(Decimal.pow(costMults[tier], preInfBuy)).div(player.galacticSacrifice.upgrades.includes(11)?galUpgrade11():1)
                     recordBought(name, 10*buying)
